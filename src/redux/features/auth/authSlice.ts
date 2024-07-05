@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "@reduxjs/toolkit/query";
 
 const initialState = {
   user: null,
@@ -23,3 +24,6 @@ const authSlice = createSlice({
 
 export const { setUser, logout } = authSlice.actions;
 export default authSlice.reducer;
+
+export const useCurrentToken = (state) => state.auth.token;
+export const useCurrentUser = (state) => state.auth.user;

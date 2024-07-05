@@ -3,7 +3,6 @@ import { Layout } from "antd";
 
 import { Outlet } from "react-router-dom";
 import { Siderbar } from "./Sidebar";
-
 const { Header, Content, Footer } = Layout;
 
 const MainLayout = () => {
