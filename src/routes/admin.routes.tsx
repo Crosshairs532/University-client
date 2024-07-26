@@ -1,9 +1,15 @@
 /* eslint-disable react-refresh/only-export-components */
+
+import AcademicDepartment from "../pages/admin/academicManagement/AcademicDepartment";
+import AcademicFaculty from "../pages/admin/academicManagement/AcademicFaculty";
+import AcademicSemester from "../pages/admin/academicManagement/AcademicSemester";
+import CreateAcademicDepartment from "../pages/admin/academicManagement/CreateAcademicDepartment";
+import CreateAcademicFaculty from "../pages/admin/academicManagement/CreateAcademicFaculty";
+import CreateAcademicSemester from "../pages/admin/academicManagement/CreateAcademicSemester";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
-
 export const adminPath = [
   {
     name: "Dashboard",
@@ -37,6 +43,42 @@ export const adminPath = [
         name: "Create Course",
         path: "create-course",
         element: <CreateAdmin></CreateAdmin>,
+      },
+    ],
+  },
+  {
+    name: "Academic Management",
+    children: [
+      {
+        name: "Academic Semester",
+        path: "academic-semesters",
+        element: <AcademicSemester></AcademicSemester>,
+      },
+      {
+        name: "Create A. Semester",
+        path: "create-academic-semesters",
+        element: <CreateAcademicSemester></CreateAcademicSemester>,
+      },
+      {
+        name: "Create A. Faculty",
+        path: "create-academic-faculty",
+        element: <CreateAcademicFaculty></CreateAcademicFaculty>,
+      },
+
+      {
+        name: "Academic Faculty",
+        path: "academic-faculty",
+        element: <AcademicFaculty></AcademicFaculty>,
+      },
+      {
+        name: "Create A. Department",
+        path: "create-academic-department",
+        element: <CreateAcademicDepartment></CreateAcademicDepartment>,
+      },
+      {
+        name: "Academic Department",
+        path: "academic-department",
+        element: <AcademicDepartment></AcademicDepartment>,
       },
     ],
   },

@@ -9,9 +9,9 @@ import { NavLink } from "react-router-dom";
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const token = useAppSelector(useCurrentToken);
 
-  if (!token) {
-    return <NavLink to="/login" replace={true}></NavLink>;
-  }
+  // if (!token) {
+  //   return <NavLink to="/login" replace={true}></NavLink>;
+  // }
   return children;
 };
 
