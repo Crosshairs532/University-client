@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import PHform from "../../components/form/PHform";
 import PHinput from "../../components/form/PHinput";
 

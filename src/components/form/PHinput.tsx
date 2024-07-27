@@ -12,7 +12,7 @@ const PHinput = ({ type, name, label }: TInputprops) => {
       <Controller
         name={name}
         render={({ fieldState: { error } }) => (
-          <Form.Item label={label}>
+          <Form.Item label={label} htmlFor={name}>
             <input type={type} id={name} />
             {error && <small>{error.message}</small>}
           </Form.Item>

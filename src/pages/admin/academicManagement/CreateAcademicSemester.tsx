@@ -2,12 +2,10 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
 import options from "../../../constants/semester";
 import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Col, Flex } from "antd";
 import PHform from "../../../components/form/PHform";
 import PHselect from "../../../components/form/PHselect";
 
-import { academicSemesterSchema } from "../../../schema/academicSemesterSchema";
 import { TResponse } from "../../../types/global";
 import { monthOptions } from "../../../constants/global";
 
@@ -38,7 +36,7 @@ const CreateAcademicSemester = () => {
     try {
       const res = (await academicSemester(semData)) as TResponse;
       if (res.error) {
-        toast.error(res.error.data.message, { id: toastId });
+        toast.error(res.error.status, { id: toastId });
       } else {
         toast.success("semester created", { id: toastId });
       }
@@ -52,7 +50,7 @@ const CreateAcademicSemester = () => {
     <Flex justify="center" align="center">
       <Col span={6}>
         <PHform
-          resolver={zodResolver(academicSemesterSchema)}
+          // resolver={zodResolver(academicSemesterSchema)}
           onSubmit={onSubmit}
         >
           <PHselect name="name" label="Name" options={options}></PHselect>
