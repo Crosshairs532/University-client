@@ -3,12 +3,12 @@ import { ReactNode } from "react";
 import {
   FieldValues,
   FormProvider,
-  SubmitErrorHandler,
+  SubmitHandler,
   useForm,
 } from "react-hook-form";
 
 type TOnsubmit = {
-  onSubmit: SubmitErrorHandler<FieldValues>;
+  onSubmit: SubmitHandler<FieldValues>;
   children: ReactNode;
   defaultValues: { id: string; password: string };
   resolver?: any;
@@ -34,7 +34,6 @@ const PHform = ({ resolver, onSubmit, children, defaultValues }: TOnsubmit) => {
       <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
         {children}
       </Form>
-      ;
     </FormProvider>
   );
 };

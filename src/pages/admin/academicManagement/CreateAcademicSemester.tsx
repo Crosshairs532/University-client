@@ -1,14 +1,16 @@
-import { Button, Col, Flex } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import PHform from "../../../components/form/PHform";
-
-import PHselect from "../../../components/form/PHselect";
-import options from "../../../constants/semester";
-import { monthOPtions } from "../../../constants/global";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { academicSemesterSchema } from "../../../schema/academicSemesterSchema";
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
+import options from "../../../constants/semester";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Col, Flex } from "antd";
+import PHform from "../../../components/form/PHform";
+import PHselect from "../../../components/form/PHselect";
+
+import { academicSemesterSchema } from "../../../schema/academicSemesterSchema";
+import { TResponse } from "../../../types/global";
+import { monthOptions } from "../../../constants/global";
+
 const currentYear = new Date().getFullYear();
 
 const yearOptions = [0, 1, 2, 3, 5].map((number) => ({
@@ -16,10 +18,11 @@ const yearOptions = [0, 1, 2, 3, 5].map((number) => ({
   label: String(number + currentYear),
 }));
 
-const createAcademicSemester = () => {
+const CreateAcademicSemester = () => {
   const [academicSemester] = useAddAcademicSemesterMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("creating...");
     console.log("submitted", data);
     const name = options[Number(data?.name) - 1]?.label;
     console.log(data);
@@ -33,8 +36,12 @@ const createAcademicSemester = () => {
     console.log(semData);
 
     try {
-      const res = await academicSemester(semData);
-      console.log(res);
+      const res = (await academicSemester(semData)) as TResponse;
+      if (res.error) {
+        toast.error(res.error.data.message, { id: toastId });
+      } else {
+        toast.success("semester created", { id: toastId });
+      }
     } catch (error) {
       toast.error("something went wrong");
       console.log(error);
@@ -53,12 +60,12 @@ const createAcademicSemester = () => {
           <PHselect
             name="startMonth"
             label="Start Month"
-            options={monthOPtions}
+            options={monthOptions}
           ></PHselect>
           <PHselect
             name="endMonth"
             label="End Month"
-            options={monthOPtions}
+            options={monthOptions}
           ></PHselect>
           <Button htmlType="submit">Submit</Button>
         </PHform>
@@ -67,4 +74,4 @@ const createAcademicSemester = () => {
   );
 };
 
-export default createAcademicSemester;
+export default CreateAcademicSemester;
