@@ -4,7 +4,10 @@ import PHinput from "../../../components/form/PHinput";
 import { Button, Col, Divider, Row } from "antd";
 import PHDatePicker from "../../../components/form/PHDatePicker";
 import PHselect from "../../../components/form/PHselect";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
+import {
+  useGetAcademicDepartmentsQuery,
+  useGetAllSemestersQuery,
+} from "../../../redux/features/admin/academicManagement.api";
 
 const studentData = {
   password: "s@amsul@21",
@@ -44,6 +47,12 @@ const studentData = {
 };
 const CreateStudent = () => {
   const { data, isLoading } = useGetAllSemestersQuery(undefined);
+  const { data: dData, isLoading: isdLoading } = useGetAcademicDepartmentsQuery(
+    undefined,
+    {
+      skip: isLoading,
+    }
+  );
 
   const semesterOptions = data?.data?.map((item) => ({
     value: item._id,
