@@ -8,6 +8,7 @@ import {
   useGetAcademicDepartmentsQuery,
   useGetAllSemestersQuery,
 } from "../../../redux/features/admin/academicManagement.api";
+import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
 
 const studentData = {
   password: "s@amsul@21",
@@ -60,8 +61,15 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const [sData] = useAddStudentMutation();
     console.log(data);
     const formData = new FormData();
+    const studentData = {
+      password: "s@amsul@21",
+      data: data,
+    };
+
+    sData(studentData);
 
     //! for development
     formData.append("data", JSON.stringify(data));
