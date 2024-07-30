@@ -119,7 +119,7 @@ const CreateStudent = () => {
                 render={({ field: { onChange, value, ...field } }) => (
                   <Form.Item>
                     <Input
-                      value={value.fileName}
+                      value={value?.FileName}
                       type="file"
                       {...field}
                       onChange={(e) => onChange(e.target?.files?.[0])}
