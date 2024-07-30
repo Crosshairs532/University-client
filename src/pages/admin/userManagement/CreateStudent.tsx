@@ -1,7 +1,7 @@
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import PHform from "../../../components/form/PHform";
 import PHinput from "../../../components/form/PHinput";
-import { Button, Col, Divider, Row } from "antd";
+import { Button, Col, Divider, Form, Input, Row } from "antd";
 import PHDatePicker from "../../../components/form/PHDatePicker";
 import PHselect from "../../../components/form/PHselect";
 import {
@@ -69,13 +69,13 @@ const CreateStudent = () => {
       data: data,
     };
 
-    sData(studentData);
-
     //! for development
     formData.append("data", JSON.stringify(data));
+    formData.append("file", data.image);
 
     //! just for checking ... this will return me same object data i get from useform
     // console.log(Object.fromEntries(fromData));
+    sData(studentData);
   };
 
   return (
@@ -111,6 +111,23 @@ const CreateStudent = () => {
               ></PHinput>
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHinput type="text" name="email" label="Email"></PHinput>
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <Controller
+                name="image"
+                render={({ field: { onChange, value, ...field } }) => (
+                  <Form.Item>
+                    <Input
+                      value={value.fileName}
+                      type="file"
+                      {...field}
+                      onChange={(e) => onChange(e.target?.files?.[0])}
+                    ></Input>
+                  </Form.Item>
+                )}
+              />
+
               <PHinput type="text" name="email" label="Email"></PHinput>
             </Col>
 
