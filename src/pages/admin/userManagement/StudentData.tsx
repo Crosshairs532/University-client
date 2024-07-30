@@ -1,22 +1,37 @@
-import { Button, Space, Table, TableColumnsType, TableProps } from "antd";
+import {
+  Button,
+  Pagination,
+  Space,
+  Table,
+  TableColumnsType,
+  TableProps,
+} from "antd";
 import { useState } from "react";
 import { TParam, TStudent } from "../../../types";
 import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement.api";
 
-export type DataType = Pick<TStudent, "name" | "id">;
+export type DataType = Pick<TStudent, "fullName" | "id">;
 
 const StudentData = () => {
   const [params, setParams] = useState<TParam | any>([]);
+  const [value, setValue] = useState(0);
   const {
     data: studentData,
     isLoading,
     isFetching,
-  } = useGetAllStudentsQuery(params);
+  } = useGetAllStudentsQuery([
+    { name: "limit", value: 3 },
+    { name: "page", value: value },
+    { name: "sort", value: "id" },
+    ...params,
+  ]);
   const tableData = studentData?.data?.map(({ _id, fullName, id }) => ({
     key: _id,
     fullName,
     id,
   }));
+
+  const metaData = studentData?.meta;
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -81,7 +96,14 @@ const StudentData = () => {
         dataSource={tableData}
         onChange={onChange}
         showSorterTooltip={{ target: "sorter-icon" }}
+        pagination={false}
       />
+      <Pagination
+        current={value}
+        total={metaData?.total}
+        pageSize={metaData?.limit}
+        onChange={(value) => setValue(value)}
+      ></Pagination>
     </div>
   );
 };
