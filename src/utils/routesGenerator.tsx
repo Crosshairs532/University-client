@@ -18,6 +18,7 @@ const routesGenerator = (items: TUserPath) => {
     }
     return prev;
   }, []);
+
   console.log(adminRoutes);
   return adminRoutes;
 };

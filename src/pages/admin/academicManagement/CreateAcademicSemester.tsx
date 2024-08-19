@@ -1,6 +1,6 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
-import options from "../../../constants/semester";
+
 import { toast } from "sonner";
 import { Button, Col, Flex } from "antd";
 import PHform from "../../../components/form/PHform";
@@ -8,6 +8,7 @@ import PHselect from "../../../components/form/PHselect";
 
 import { TResponse } from "../../../types/global";
 import { monthOptions } from "../../../constants/global";
+import { options } from "../../../constants/semester";
 
 const currentYear = new Date().getFullYear();
 

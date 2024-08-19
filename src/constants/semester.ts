@@ -1,4 +1,4 @@
-const options = [
+export const options = [
   {
     value: "01",
     label: "Autumn",
@@ -13,4 +13,17 @@ const options = [
   },
 ];
 
-export default options;
+export const semesterOptions = [
+  {
+    value: "UPCOMING",
+    label: "Upcoming",
+  },
+  {
+    value: "ONGOING",
+    label: "Ongoing",
+  },
+  {
+    value: "ENDED",
+    label: "Ended",
+  },
+];
