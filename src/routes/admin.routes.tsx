@@ -12,8 +12,8 @@ import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
 import CreateStudent from "../pages/admin/userManagement/CreateStudent";
 import StudentData from "../pages/admin/userManagement/StudentData";
 import StudentDetails from "../pages/admin/userManagement/StudentDetails";
-import CreateCourse from "../pages/admin/courseManagement/CreateCourse.jsx";
-import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration.jsx";
+import CreateCourse from "../pages/admin/courseManagement/CreateCourse.js";
+import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration.js";
 export const adminPath = [
   {
     name: "Dashboard",

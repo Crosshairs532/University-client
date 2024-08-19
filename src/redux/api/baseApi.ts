@@ -14,6 +14,7 @@ import { toast } from "sonner";
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://localhost:2000/api/v1",
   credentials: "include",
+
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
     if (token) {
@@ -62,4 +63,5 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: BaseQueryRefreshToken,
   endpoints: () => ({}),
+  tagTypes: ["semester"],
 });
