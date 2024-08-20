@@ -104,16 +104,6 @@ const RegisteredSemesters = () => {
       },
     },
   ];
-  //   const onChange: TableProps<DataType>["onChange"] = (
-  //     _pagination,
-  //     _sorter,
-  //     extra
-  //   ) => {
-  //     if (extra.action === "filter") {
-  //       const queryParam: TParam[] = [];
-  //       setParams(queryParam);
-  //     }
-  //   };
 
   if (isLoading) {
     return <p>Loading...</p>;
