@@ -15,12 +15,13 @@ import StudentDetails from "../pages/admin/userManagement/StudentDetails";
 import CreateCourse from "../pages/admin/courseManagement/CreateCourse.js";
 import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration.js";
 import Courses from "../pages/admin/courseManagement/Courses.js";
+import OfferCourse from "../pages/admin/courseManagement/OfferCourse.js";
 
 export const adminPath = [
   {
     name: "Dashboard",
     path: "dashboard",
-    element: <AdminDashboard></AdminDashboard>,
+    element: <AdminDashboard />,
   },
   {
     name: "User Management",
@@ -28,26 +29,26 @@ export const adminPath = [
       {
         name: "Create Admin",
         path: "create-admin",
-        element: <CreateAdmin></CreateAdmin>,
+        element: <CreateAdmin />,
       },
       {
         name: "Students",
         path: "student-data",
-        element: <StudentData></StudentData>,
+        element: <StudentData />,
       },
       {
         path: "student-data/:studentId",
-        element: <StudentDetails></StudentDetails>,
+        element: <StudentDetails />,
       },
       {
         name: "Create Faculty",
         path: "create-faculty",
-        element: <CreateFaculty></CreateFaculty>,
+        element: <CreateFaculty />,
       },
       {
         name: "Create Student",
         path: "create-student",
-        element: <CreateStudent></CreateStudent>,
+        element: <CreateStudent />,
       },
     ],
   },
@@ -68,6 +69,11 @@ export const adminPath = [
         name: "Courses",
         path: "courses",
         element: <Courses></Courses>,
+      },
+      {
+        name: "Offered Courses",
+        path: "offered-courses",
+        element: <OfferCourse />,
       },
     ],
   },

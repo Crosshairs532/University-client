@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export type TUserPath = {
   [x: string]: any;
-  name: string;
+  name?: string;
   path?: string;
   element?: ReactNode;
   children?: TUserPath[];

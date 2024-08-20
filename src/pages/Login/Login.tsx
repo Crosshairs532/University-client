@@ -39,8 +39,10 @@ const Login = () => {
     }
   };
   const defaultValues = {
-    id: "admin",
-    password: "admin",
+    // id: "admin",
+    // password: "admin",
+    userID: "2026010016",
+    password: "student12",
   };
   return (
     <Row justify="center" align="middle" style={{ height: "100vh" }}>

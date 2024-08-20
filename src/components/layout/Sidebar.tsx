@@ -4,6 +4,7 @@ import { adminPath } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import { studentPaths } from "../../routes/student.routes";
 const { Sider } = Layout;
 
 const userRole = {
@@ -13,7 +14,7 @@ const userRole = {
 };
 export const Siderbar = () => {
   const user = useAppSelector(selectCurrentUser);
-  const role = "admin";
+  const role = "student";
 
   let sideBarItems;
   switch (role) {
