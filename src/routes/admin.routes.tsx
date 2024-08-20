@@ -14,6 +14,8 @@ import StudentData from "../pages/admin/userManagement/StudentData";
 import StudentDetails from "../pages/admin/userManagement/StudentDetails";
 import CreateCourse from "../pages/admin/courseManagement/CreateCourse.js";
 import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration.js";
+import Courses from "../pages/admin/courseManagement/Courses.js";
+
 export const adminPath = [
   {
     name: "Dashboard",
@@ -61,6 +63,11 @@ export const adminPath = [
         name: "Semester Registration",
         path: "semester-registration",
         element: <SemesterRegistration></SemesterRegistration>,
+      },
+      {
+        name: "Courses",
+        path: "courses",
+        element: <Courses></Courses>,
       },
     ],
   },
