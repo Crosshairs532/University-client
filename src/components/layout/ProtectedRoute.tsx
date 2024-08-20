@@ -2,11 +2,13 @@ import { ReactNode } from "react";
 import {
   logout,
   selectCurrentUser,
+  TUser,
   useCurrentToken,
 } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { verifyToken } from "../../utils/verifyToken";
 
 const ProtectedRoute = ({
   children,
@@ -16,10 +18,19 @@ const ProtectedRoute = ({
   role: string | undefined;
 }) => {
   const token = useAppSelector(useCurrentToken);
-  const user = useAppSelector(selectCurrentUser);
+
+  // ! we will not do this  as from redux persist one can easily acces admin
+  // const user = useAppSelector(selectCurrentUser);
+
+  // * we will verifytoken
+  let user;
+
+  if (token) {
+    user = verifyToken(token);
+  }
   const dispatch = useDispatch();
 
-  if (role !== undefined && role !== user?.role) {
+  if (role !== undefined && role !== (user as TUser)?.role) {
     dispatch(logout());
     return <NavLink to="/login" replace={true}></NavLink>;
   }

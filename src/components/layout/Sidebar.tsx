@@ -3,8 +3,13 @@ import sidebarGenerator from "../../utils/sidebarGenerator";
 import { adminPath } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { useAppSelector } from "../../redux/hooks";
-import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import {
+  selectCurrentUser,
+  useCurrentToken,
+} from "../../redux/features/auth/authSlice";
 import { studentPaths } from "../../routes/student.routes";
+import { verifyToken } from "../../utils/verifyToken";
+import { useDispatch } from "react-redux";
 const { Sider } = Layout;
 
 const userRole = {
@@ -13,7 +18,15 @@ const userRole = {
   STUDENT: "student",
 };
 export const Siderbar = () => {
-  const user = useAppSelector(selectCurrentUser);
+  // ! we will not do this  as from redux persist one can easily acces admin
+  // const user = useAppSelector(selectCurrentUser);
+  // * we will verifytoken
+  const token = useAppSelector(useCurrentToken);
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
+  const dispatch = useDispatch();
   const role = "student";
 
   let sideBarItems;
