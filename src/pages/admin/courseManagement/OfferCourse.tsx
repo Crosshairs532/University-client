@@ -16,8 +16,8 @@ import PHform from "../../../components/form/PHform";
 import PHselect from "../../../components/form/PHselect";
 import PHselectWatch from "../../../components/form/PHselectWatch";
 import PHinput from "../../../components/form/PHinput";
-import PHTimePicker from "../../../components/form/PHTimepicker";
 import { weekDaysOptions } from "../../../constants/global";
+import PHTimePicker from "../../../components/form/PHTimePicker";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");

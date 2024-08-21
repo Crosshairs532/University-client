@@ -3,10 +3,7 @@ import sidebarGenerator from "../../utils/sidebarGenerator";
 import { adminPath } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { useAppSelector } from "../../redux/hooks";
-import {
-  selectCurrentUser,
-  useCurrentToken,
-} from "../../redux/features/auth/authSlice";
+import { useCurrentToken } from "../../redux/features/auth/authSlice";
 import { studentPaths } from "../../routes/student.routes";
 import { verifyToken } from "../../utils/verifyToken";
 import { useDispatch } from "react-redux";

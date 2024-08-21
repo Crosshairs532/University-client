@@ -34,6 +34,9 @@ const BaseQueryRefreshToken: BaseQueryFn<
   if (result.error?.status === 404) {
     toast.error("user not found");
   }
+  if (result.error?.status === 403) {
+    toast.error(result?.error.data.message);
+  }
   if (result.error?.status === 401) {
     const res = await fetch("https://localhost:500/api/v1/auth/refresh-token", {
       method: "POST",
