@@ -38,4 +38,4 @@ const studentCourseApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {} = studentCourseApi;
+export const { useGetAllOfferedCoursesQuery } = studentCourseApi;
