@@ -1,6 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useGetAllFacultyCoursesQuery } from "../../redux/features/faculty/facultyCourses.api";
-import { Button, Table } from "antd";
+import {
+  useAddMarkMutation,
+  useGetAllFacultyCoursesQuery,
+} from "../../redux/features/faculty/facultyCourses.api";
+import { Button, Modal, Table } from "antd";
+import PHform from "../../components/form/PHform";
+import PHselect from "../../components/form/PHselect";
+import PHinput from "../../components/form/PHinput";
+import { useState } from "react";
 
 const MyStudents = () => {
   const { registerSemesterId, courseId } = useParams();
@@ -15,11 +22,16 @@ const MyStudents = () => {
     },
   ]);
 
-  const tableData = facultyData?.data?.map(({ _id, student }) => ({
-    key: _id,
-    name: student.fullName,
-    roll: student.id,
-  }));
+  const tableData = facultyData?.data?.map(
+    ({ _id, student, semesterRegistration, offeredCourse }) => ({
+      key: _id,
+      name: student.fullName,
+      roll: student.id,
+      semesterRegistration: semesterRegistration._id,
+      student: student._id,
+      offeredCourse: offeredCourse._id,
+    })
+  );
   const columns = [
     {
       title: "Name",
@@ -33,10 +45,10 @@ const MyStudents = () => {
     {
       title: "Action",
       dataIndex: "action",
-      render: () => {
+      render: (item) => {
         return (
           <div>
-            <Button>update</Button>
+            <AddMarksModal studentInfo={item} />
           </div>
         );
       },
@@ -51,6 +63,55 @@ const MyStudents = () => {
         showSorterTooltip={{ target: "sorter-icon" }}
       />
     </div>
+  );
+};
+const AddMarksModal = ({ studentInfo }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [addMark] = useAddMarkMutation();
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = async (data) => {
+    const studentMark = {
+      semesterRegistration: studentInfo.semesterRegistration,
+      offeredCourse: studentInfo.offeredCourse,
+      student: studentInfo.student,
+      courseMarks: {
+        classTest1: Number(data.classTest1),
+        classTest2: Number(data.classTest2),
+        midTerm: Number(data.midTerm),
+        finalTerm: Number(data.finalTerm),
+      },
+    };
+
+    const res = await addMark(studentMark);
+  };
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Assign Faculties
+      </Button>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <PHform onSubmit={handleSubmit}>
+          <PHinput type="text" name="classTest1" label="Class Test 1" />
+          <PHinput type="text" name="classTest2" label="Class Test 2" />
+          <PHinput type="text" name="midTerm" label="Midterm" />
+          <PHinput type="text" name="finalTerm" label="Final" />
+          <Button htmlType="submit">submit</Button>
+        </PHform>
+      </Modal>
+    </>
   );
 };
 
