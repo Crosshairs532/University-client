@@ -24,7 +24,7 @@ export const Siderbar = () => {
     user = verifyToken(token);
   }
   const dispatch = useDispatch();
-  const role = "student";
+  const role = "faculty";
 
   let sideBarItems;
   switch (role) {
